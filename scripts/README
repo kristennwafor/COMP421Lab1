@@ -1,0 +1,39 @@
+This directory contains a couple of small python scripts that
+might help test your lab 1 front end.
+
+Please report problems on Piazza.
+
+TEST SCRIPT:
+
+The test script runs an executable front end against a directory of ILOC
+files. It prints all of the output from this set of runs to stdout.
+
+The syntax is:
+
+   test <executable name>  <directory of ILOC files>
+
+So, to run lab1_ref on the test_input  blocks, you might type
+
+   ./test ~comp412/students/lab1/lab1_ref  ~comp412/students/lab1/test_inputs
+
+Do not try to run multiple instances of the tester from multiple shells on 
+the same machine. The tester creates a directory in /tmp to hold all of the
+miscellaneous files that it creates. Having multiple tester instances sharing
+a single temporary directory will likely produce really bad results.
+
+TIMING SCRIPT:
+
+The timing script is similar to the test script, except that it always
+runs the executable against the ILOC SLOCs Scalability test found in 
+~comp412/students/ILOC/Scalability/SLOCs.
+
+The syntax is:
+
+    timer <executable name>
+
+The timer reports its results on both standard out and to a log file named
+with your login username.
+
+
+-------------------
+updated August 2023

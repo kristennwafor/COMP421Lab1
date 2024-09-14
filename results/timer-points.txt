@@ -1,0 +1,2 @@
+NetId	Name	T1k	T2k	T4k	T8k	T16k	T32k	T64k	T128k	Lang.	Scaling	Scal Pts	Eff Pts
+comp412	Comp 412	0.0061	0.0066	0.0083	0.0109	0.0156	0.0250	0.0272	0.0845	unknown 	 linear-w-1-jump anomaly	15.0	15.0	*
