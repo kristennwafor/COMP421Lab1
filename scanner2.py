@@ -254,5 +254,5 @@ def scan(input_stream):
 
 
         else:
-            print("skip at the very end")
+            #print("skip at the very end")
             return skip(input_stream, line_num, lexeme)
