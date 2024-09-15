@@ -27,9 +27,9 @@ def main():
 
     args = sys.argv[1:]
 
-    # Error check: if less than 2 arguments are passed
+    # ERROR check: if less than 2 arguments are passed
     if len(args) < 2:
-        print_error("Error: No file or flag provided.")
+        print_error("ERROR: No file or flag provided.")
         display_help()
         return
 
@@ -48,7 +48,7 @@ def main():
                 flag_list[3] = True  # -s flag
             # not a valid flag
             else:
-                print_error(f"Error: Unrecognized flag '{arg}'.")
+                print_error(f"ERROR: Unrecognized flag '{arg}'.")
                 display_help()
                 return
 
@@ -57,13 +57,13 @@ def main():
             if filename == "":
                 filename = arg
             else:
-                print_error("Error: Multiple filenames provided.")
+                print_error("ERROR: Multiple filenames provided.")
                 display_help()
                 return
 
     # If no file name is provided
     if filename == "":
-        print_error("Error: No file provided.")
+        print_error("ERROR: No file provided.")
         display_help()
         return
 
@@ -90,11 +90,12 @@ def main():
                 else:
                     # build the IR
                     print(f"Parse succeeded. Processed {num_operations} operations.")
+                    block.print_ir()
 
         except FileNotFoundError:
-            print(f"Error: File '{filename}' not found.")
+            print(f"ERROR: File '{filename}' not found.")
         except Exception as e:
-            print(f"Error: {str(e)}")
+            print(f"ERROR: {str(e)}")
 
 
     elif flag_list[2]:  # -p flag handler (parse)
@@ -109,9 +110,9 @@ def main():
                     print(f"Parse succeeded. Processed {num_operations} operations.")
 
         except FileNotFoundError:
-            print(f"Error: File '{filename}' not found.")
+            print(f"ERROR: File '{filename}' not found.")
         except Exception as e:
-            print(f"Error: {str(e)}")
+            print(f"ERROR: {str(e)}")
 
 
     elif flag_list[3]:  # -s flag handler (scan)
@@ -122,8 +123,11 @@ def main():
                     token = scan(file)
                     line_num, token_category, lexeme = token
 
+                    token_name = ""
+
                     # If we encounter EOF, break out of the loop
-                    if token_category == token_type[EOF]:
+                    #if token_category == token_type[EOF]:
+                    if token_category == EOF:
                         break
 
                     # Handle errors
@@ -134,15 +138,19 @@ def main():
                     else:
                         # Print valid tokens
                         # convert integer to string for token category before next line
-                        print(f"{line_num}: < {token_category}, \"{lexeme}\" >")
+                        token_name = token_type[token_category]
+                        print(f"{line_num}: < {token_name}, \"{lexeme}\" >")
+                        #print(f"{line_num}: < {token_category}, \"{lexeme}\" >")
                 #token_category = "ENDFILE"
-                print(f"{line_num}: < ENDFILE, \"\" >")
+                end_token = token_type[EOF]
+                print(f"{line_num}: < {end_token}, \"\" >")
+                #print(f"{line_num}: < ENDFILE, \"\" >")
         # manually create EOF token here
         #print()
         except FileNotFoundError:
-            print(f"Error: File '{filename}' not found.")
+            print(f"ERROR: File '{filename}' not found.")
         except Exception as e:
-            print(f"Error: {str(e)}")
+            print(f"ERROR: {str(e)}")
 
 
 
